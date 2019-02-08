@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import MainSummary from './MainSummary';
 
 class App extends Component {
   constructor(props){
@@ -26,6 +27,8 @@ class App extends Component {
     }
   }
 
+  
+
   updateFeature(feature, newValue) {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
@@ -35,19 +38,19 @@ class App extends Component {
   }
 
   render() {
-    const summary = Object.keys(this.state.selected)
-          .map(key => <div className="summary__option" key={key}>
-            <div className="summary__option__label">{key}  </div>
-            <div className="summary__option__value">{this.state.selected[key].name}</div>
-            <div className="summary__option__cost">
-              { new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
-                  .format(this.state.selected[key].cost) }
-            </div>
-        </div>)
+    //all of the summary options
+    // const summary = Object.keys(this.state.selected)
+    //       .map(key => <div className="summary__option" key={key}>
+    //         <div className="summary__option__label">{key}  </div>
+    //         <div className="summary__option__value">{this.state.selected[key].name}</div>
+    //         <div className="summary__option__cost">
+    //           { new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
+    //               .format(this.state.selected[key].cost) }
+    //         </div>
+    //     </div>)
 
-    const total = Object.keys(this.state.selected)
-          .reduce((acc, curr) => acc + this.state.selected[curr].cost, 0);    
-
+    // const total = Object.keys(this.state.selected)
+    //       .reduce((acc, curr) => acc + this.state.selected[curr].cost, 0);    
 
     const features = Object.keys(this.props.features)
           .map(key => {
@@ -85,7 +88,8 @@ class App extends Component {
             <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
             { features }
           </section>
-          <section className="main__summary">
+          <MainSummary selected={this.state.selected}/>
+          {/* <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>
             {summary}
             <div className="summary__total">
@@ -95,7 +99,7 @@ class App extends Component {
                   .format(total) }
               </div>
             </div>
-          </section>
+          </section> */}
         </main>
       </div>
     );
