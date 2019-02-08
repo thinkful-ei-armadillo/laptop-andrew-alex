@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MainSummary from './MainSummary';
+import MainForm from './MainForm';
 
 class App extends Component {
   constructor(props){
@@ -84,10 +85,7 @@ class App extends Component {
           <h5>Customize your laptop</h5>  
         </header>      
         <main>
-          <section className="main__form">
-            <h3>TECH SPECS AND CUSTOMIZATIONS</h3>
-            { features }
-          </section>
+          <MainForm selected={this.state.selected} features={this.props.features} updateFeature={this.updateFeature}/>
           <MainSummary selected={this.state.selected}/>
           {/* <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>
